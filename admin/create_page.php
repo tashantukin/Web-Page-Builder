@@ -222,7 +222,7 @@ function preview() {
  
 }
 
-//test test test test test
+
 data2 = CKEDITOR.instances.editor1.getData();
         html=CKEDITOR.instances.editor1.getSnapshot();
         dom=document.createElement("DIV");
@@ -232,13 +232,12 @@ data2 = CKEDITOR.instances.editor1.getData();
         console.log('last word ' +  res1);
           meta =  $('#metadescs1');
           meta.text(plain_text);
-//test test test test
+
 
         function GetContents1()
         {
-          console.log('get contents ');
         
-
+      
         data2 = CKEDITOR.instances.editor1.getData();
         html=CKEDITOR.instances.editor1.getSnapshot();
         dom=document.createElement("DIV");
@@ -259,15 +258,15 @@ data2 = CKEDITOR.instances.editor1.getData();
         dom.innerHTML=html;
         plain_text=(dom.textContent || dom.innerText);
        
+
           meta =  $('#metadescs1');
-          meta.text(plain_text);
+          meta.text(data2);
           var res =  plain_text.charAt(plain_text.length-1);     
         console.log('last word 2 ' +  res);
        
         }
 
-
-        editor.on('key', function(ev){ 
+        editor.on('change', function(ev){ 
        
           var el =   document.getElementById("metadescs1");
           var text = $('#metadescs1').val();
@@ -277,7 +276,7 @@ data2 = CKEDITOR.instances.editor1.getData();
             $('#metadescs1').val(text.substring(0,max));
           }else {
             GetContents1();
-            GetContents2();
+            //GetContents2();
           }
           }); 
         

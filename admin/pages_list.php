@@ -132,7 +132,6 @@
       </div>
     
     </div>
-   
   </div>
  
   </div>
@@ -172,9 +171,16 @@ jQuery(document).ready(function() {
         "pagingType": "first_last_numbers"
         }
     );
+
+
+waitForElement('#no-more-tables1_wrapper',function(){
+   var pagediv =  "<div class ='paging' id = 'pagination-insert'> </div>";
+   $('#no-more-tables1_wrapper').append(pagediv);
+    });
+
     waitForElement('#no-more-tables1_length',function(){
     $('#no-more-tables1_length').css({ display: "none" });
-});
+    });
 
         jQuery(".mobi-header .navbar-toggle").click(function(e) {
             e.preventDefault();
@@ -226,9 +232,9 @@ jQuery(document).ready(function() {
 }
 
 
-waitForElement('#no-more-tables1_paginate',function(){
+waitForElement('#pagination-insert',function(){
 var pagination  = $('#no-more-tables1_paginate');
-$('#no-more-tables1_wrapper').append(pagination);
+$('#pagination-insert').append(pagination);
 // $('#no-more-tables1_paginate').removeClass('dataTables_paginate paging_simple_numbers');
 });
 

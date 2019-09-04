@@ -105,7 +105,7 @@ textarea#editor1 {
                                <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group ">
-                                          <label class="">Meta Title</label>
+                                          <label class="">Meta Title (Maximum characters: 65)</label>
                                           <input class="form-control" type="text" name="meta_title"  id="metatitle" value = "<?php echo $metaTitle; ?>"  />
                                        </div>
                                    </div>
@@ -125,7 +125,7 @@ textarea#editor1 {
 
                                    <div class="col-md-12">
                                        <div class="form-group ">
-                                          <label class="">Meta Description</label>
+                                          <label class="">Meta Description (Maximum characters: 170)</label>
                                           <textarea class="form-control" name="meta_desc" id="metadesc"  maxlength="300"><?php echo $metaDesc; ?></textarea>
                                        </div>
                                    </div>
@@ -143,19 +143,19 @@ textarea#editor1 {
               <div class="col-md-4 pgcreate-frm-r">
                  <div class="panel-box">
                     <div class="pgcreate-sbar">
-                        <div class="pgcreate-sbar-title">Available</div>
+                        <div class="pgcreate-sbar-title">Status</div>
                         <div class="pgcreate-sbardesc ">
                             <div class="pgcreate-sbarcon pgfncyopt">
                                 <div class="fancy-radio">
                                     <input type="radio" value="0"  <?php echo ($isAvailable == "Publish") ?  "checked" : "" ; ?> name="opt_del" id="pg_avail_pub"  class="" id = "available">
-                                    <label for="pg_avail_pub"><span>Publish</span></label>
+                                    <label for="pg_avail_pub"><span>Published</span></label>
                                   </div>
                             </div>
 
                             <div class="pgcreate-sbarcon pgfncyopt">
                                 <div class="fancy-radio">
                                     <input type="radio" value="1" <?php echo ($isAvailable == 'Hide') ?  "checked" : "" ; ?> name="opt_del" id="pg_avail_hide"  class="" id = "hide">
-                                    <label for="pg_avail_hide">Hide</label>
+                                    <label for="pg_avail_hide">Hidden</label>
                                   </div>
                             </div>
                         </div>
@@ -164,25 +164,25 @@ textarea#editor1 {
 
                  <div class="panel-box">
                     <div class="pgcreate-sbar">
-                        <div class="pgcreate-sbar-title">Visible to</div>
+                        <div class="pgcreate-sbar-title">Visibility</div>
                         <div class="pgcreate-sbardesc ">
                             <div class="pgcreate-sbarcon pgfncyopt">
                                 <div class="fancy-radio">
                                     <input type="radio" value="0"  <?php echo ($isVisible == "All") ?  "checked" : "" ; ?> name="visible-to" id="visible-to1"  class="">
-                                    <label for="visible-to1"><span>All users including anonymous</span></label>
+                                    <label for="visible-to1"><span>All users</span></label>
                                   </div>
                             </div>
 
                             <div class="pgcreate-sbarcon pgfncyopt">
                                 <div class="fancy-radio">
                                     <input type="radio" value="1" <?php echo ($isVisible == "MerchantAndConsumer") ?  "checked" : "" ; ?> name="visible-to" id="visible-to2"  class="">
-                                    <label for="visible-to2">Merchant and Consumer</label>
+                                    <label for="visible-to2">Merchants and Registered Buyer</label>
                                   </div>
                             </div>
                              <div class="pgcreate-sbarcon pgfncyopt">
                                 <div class="fancy-radio">
                                     <input type="radio" value="2" <?php echo ($isVisible == "MerchantOnly") ?  "checked" : "" ; ?> name="visible-to" id="visible-to3"  class="">
-                                    <label for="visible-to3">Merchant only</label>
+                                    <label for="visible-to3">Merchants only</label>
                                   </div>
                             </div>
                             
