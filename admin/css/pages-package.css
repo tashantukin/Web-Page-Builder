@@ -273,9 +273,9 @@ a.svg {
 
 
 
-
-
-
+#metadescspan #metatitlespan {
+  display: none; 
+}
 
 
 

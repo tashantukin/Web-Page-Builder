@@ -44,7 +44,8 @@
                         <div class="col-md-7">
                            <div class="form-group ">
                               <label class="">Page Title</label>
-                              <input class="form-control" type="text" name="pg_title"  id = "title" required/>
+                              <input class="form-control" type="text" name="pg_title"  id = "title" required  maxlength="65"/>
+                              <!-- <span id ="titlespan">You have <span id = "titleleft">65</span> characters left.</span> -->
                            </div>
                         </div>  
                         
@@ -84,8 +85,9 @@
                                <div class="row">
                                    <div class="col-md-6">
                                        <div class="form-group ">
-                                          <label class="">Meta Title <span>(Maximum characters: 65)</span></label>
-                                          <input class="form-control" type="text" name="meta_title"  id="metatitle" maxlength="60" />
+                                          <label class="">Meta Title </label>
+                                          <input class="form-control" type="text" name="meta_title"  id="metatitle" maxlength="65" />
+                                          <span id = "metatitlespan">You have <span id = "metatitleleft">65</span> characters left.</span>
                                        </div>
                                    </div>
                                    <div class="col-md-6 pgcrtseo-aplybtnsec">
@@ -93,10 +95,11 @@
                                    </div> 
                                    <div class="col-md-12">
                                        <div class="form-group ">
-                                          <label class="">Meta Description <span>(Maximum characters: 170)</span></label>
+                                          <label class="">Meta Description </label>
+                                          
                                           <textarea class="form-control" name="meta_desc" id="metadescs"  maxlength="300" style="display:none"; placeholder = "This is the meta description of the seo the people can see when they find the site in the search engine"></textarea>
-                                          <textarea class="form-control" name="meta_desc" id="metadescs1"  maxlength="300" placeholder = "This is the meta description of the seo the people can see when they find the site in the search engine"></textarea>
-                                     
+                                          <textarea class="form-control" name="meta_desc" id="metadescs1"  maxlength="170" placeholder = "This is the meta description of the seo the people can see when they find the site in the search engine"></textarea>
+                                          <span id = "metadescspan">You have <span id = "metaleft">170</span> characters left.</span>
                                      
                                        </div>
                                    </div>
@@ -211,6 +214,69 @@
 //               toolbar: []
 //             } );
 
+
+var textarea = document.getElementById("metadescs1");
+textarea.addEventListener("input", function(){
+    var maxlength = this.getAttribute("maxlength");
+    var currentLength = this.value.length;
+
+    if( currentLength >= maxlength ){
+   
+    }else{
+      $('#metaleft').text(maxlength - currentLength);
+      $('#metaleft').css('color','green');
+       
+    }
+});
+
+
+var textarea = document.getElementById("metatitle");
+textarea.addEventListener("input", function(){
+    var maxlength = this.getAttribute("maxlength");
+    var currentLength = this.value.length;
+
+    if( currentLength >= maxlength ){
+
+    }else{
+      $('#metatitleleft').text(maxlength - currentLength);
+      $('#metatitleleft').css('color','green');
+      
+    }
+});
+
+
+var textarea = document.getElementById("title");
+textarea.addEventListener("input", function(){
+    var maxlength = this.getAttribute("maxlength");
+    var currentLength = this.value.length;
+
+    if( currentLength >= maxlength ){
+  
+    }else{
+      $('#titleleft').text(maxlength - currentLength);
+      $('#titleleft').css('color','green');
+     
+    }
+});
+
+
+$('#metatitle').blur(function() {
+  $('#metatitlespan').hide();
+});
+
+$('#metatitle').focus(function() {
+  $('#metatitlespan').show();
+});
+
+
+$('#metadescs1').blur(function() {
+  $('#metadescspan').hide();
+});
+
+$('#metadescs1').focus(function() {
+  $('#metadescspan').show();
+});
+
 function preview() {
  var data1 = CKEDITOR.instances.editor1.getData();
  var title =  $('#title').val();
@@ -229,7 +295,7 @@ data2 = CKEDITOR.instances.editor1.getData();
         dom.innerHTML=html;
         plain_text=(dom.textContent || dom.innerText);
         var res1 =  plain_text.charAt(plain_text.length-1);     
-        console.log('last word ' +  res1);
+     
           meta =  $('#metadescs1');
           meta.text(plain_text);
 
@@ -250,7 +316,7 @@ data2 = CKEDITOR.instances.editor1.getData();
         }
         function GetContents2()
         {
-          console.log('get contents ');
+          
         
         data2 = CKEDITOR.instances.editor1.getData();
         html=CKEDITOR.instances.editor1.getSnapshot();
@@ -262,8 +328,6 @@ data2 = CKEDITOR.instances.editor1.getData();
           meta =  $('#metadescs1');
           meta.text(data2);
           var res =  plain_text.charAt(plain_text.length-1);     
-        console.log('last word 2 ' +  res);
-       
         }
 
         editor.on('change', function(ev){ 
@@ -271,10 +335,14 @@ data2 = CKEDITOR.instances.editor1.getData();
           var el =   document.getElementById("metadescs1");
           var text = $('#metadescs1').val();
           var max = el.attributes.maxLength.value;
+          var currentLength = el.value.length;
+
           if (el.value.length >= max)
           {
             $('#metadescs1').val(text.substring(0,max));
           }else {
+            $('#metaleft').text(max - currentLength);
+            $('#metaleft').css('color','green');
             GetContents1();
             //GetContents2();
           }

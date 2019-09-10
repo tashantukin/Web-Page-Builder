@@ -52,21 +52,19 @@
                        
                          <th id="page-title">Page Title<i class="icon icon-white-up"><i class="icon icon-white-down"></i></i></th>
 
-
                          <th>Visibility</th>
 
                          <th id="last-updated">Last Updated<i class="icon icon-white-up"><i class="icon icon-white-down"></i></i></th>
 
                          <th>Status</th>
 
-                         <th>&nbsp;</th>
+                         <th>Actions</th>
 
                        </tr> 
                     </thead>
                     <tbody>
                   <tr>
                        <?php  
-                  
                           $baseUrl = getMarketplaceBaseUrl();
                           $admin_token = getAdminToken();
                           $customFieldPrefix = getCustomFieldPrefix();
@@ -125,10 +123,7 @@
         </div>
       
         </div>
-        <nav class="text-center" aria-label="Page navigation">
-              <ul class="pagination justify-content-center">
-              </ul>
-            </nav>
+      
       </div>
     
     </div>

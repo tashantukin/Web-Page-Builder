@@ -8,16 +8,10 @@
     var re = /([a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12})/i;
     var packageId = re.exec(scriptSrc.toLowerCase())[1];
     var marketplace = scriptSrc.replace('/admin/plugins/'+ packageId +'/scripts/package.js', '/pages/').trim();
-
     var stylepath =  scriptSrc.replace('/admin/plugins/'+ packageId +'/scripts/package.js', '/user/plugins/'+ packageId +'/css/styles.css').trim();
     var customFieldPrefix = packageId.replace(/-/g, "");
     var userId = $('#userGuid').val();
-    var isAvailable;
-    var isVisible;
-    var content;
-    var data1;
-    var data2;
-    var plain_text;
+    var isAvailable, isVisible, content, data1, data2, plain_text;
     var dom;
     var html;
     var preview_url =  $('#path').val();
@@ -41,9 +35,6 @@
          var apiUrl = packagePath + '/load_pages.php';
         $.ajax({
             url: apiUrl,          
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -58,9 +49,6 @@
          var apiUrl = packagePath + '/pages_list.php';
         $.ajax({
             url: apiUrl,          
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -78,9 +66,6 @@
          var apiUrl = packagePath + '/save_new_content.php';
         $.ajax({
             url: apiUrl,          
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -98,13 +83,10 @@
     function savePreview(){
         data1 = CKEDITOR.instances.editor1.getData();
         var data = { 'userId': userId, 'title': $('#title').val(), 'page': data1};
-        console.log(data);
+        
         var apiUrl = packagePath + '/save_preview.php';
         $.ajax({
             url: apiUrl,          
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -122,9 +104,6 @@
         var apiUrl = packagePath + '/save_preview.php';
         $.ajax({
             url: apiUrl,          
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -142,9 +121,6 @@
          var apiUrl = packagePath + '/save_modified_content.php';
         $.ajax({
             url: apiUrl,          
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -164,9 +140,6 @@
          var apiUrl = packagePath + '/delete_content.php';
         $.ajax({
             url: apiUrl,          
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
@@ -228,7 +201,6 @@
          // check the visibilty
          $('input:radio[name="visible-to"]').change(function() {
             isVisible = $("input[name='visible-to']:checked").val();
-            console.log(isVisible);
             if(isVisible){
             }
          });
@@ -238,7 +210,6 @@
             validateMetadesc();
 
              if($("#title").val() == "" || data1 == "" || $('#metadescs1') == ""){ 
-                 console.log('true');
                  toastr.error('Please fill in empty fields.');
           
              }
@@ -266,13 +237,12 @@
         
           //delete the page contents
           $('#popup_btnconfirm').click(function() {
-            console.log('funct touched,');
+          
             pagedids = $('.record_id').val();
             deletePage();
             //
           });
 
-          //=======================================================================for preview===========================
           $('#showpreview').click(function() {
             $('#showpreview').attr("target", target="_blank")
             $("#showpreview").attr("href", preview_url);
@@ -298,7 +268,7 @@
 
          if (urlss.indexOf('/create_page.php') >= 0) {
          if($('.pgcrtseo-aplyllink').text() == 'Save') {
-             console.log('been here');
+             
             // $('#editContent').click(function() {
                $('#saveNew').click(function() {
              
@@ -354,7 +324,6 @@
             }
 
             else {
-                console.log('been here all day');
                 $('.pgcrt-meta-seosec').removeClass('hide');
                 $('.pgcrt-meta-seoeditsec').addClass('hide');
                 //handle the values of seo details here
@@ -427,11 +396,8 @@
             {
                 setTimeout(function()
                 { 
-                   //get the value of the input text
                    var data= $( '#title' ).val() ;
-                   //replace the special characters to '' 
                    var dataFull = data.replace(/[^\w\s]/gi, '');
-                   //set the new value of the input text without special characters
                    $( '#title' ).val(dataFull);
                 });
          
@@ -444,11 +410,9 @@
             {
                 setTimeout(function()
                 { 
-                   //get the value of the input text
+               
                    var data= $( '#metaurl' ).val() ;
-                   //replace the special characters to '' 
                    var dataFull1 = data.replace(/[^\w\s]/gi, '');
-                   //set the new value of the input text without special characters
                    $( '#metaurl' ).val(dataFull1);
                 });
          
